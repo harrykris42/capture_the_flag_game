@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disqualified</title>
+</head>
+<body>
+    {% if disqualified_team_name %}
+        <p>Your answer was incorrect, and you are disqualified from the challenge.</p>
+    {% else %}
+        <h1>Disqualified</h1>
+        <p>Sorry, your team has been disqualified.</p>
+    {% endif %}
+</body>
+</html>

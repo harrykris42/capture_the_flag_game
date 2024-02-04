@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting Room</title>
+</head>
+<body>
+    <h1>Waiting Room</h1>
+    
+    <ul id="team-list">
+        {% for team in teams %}
+            <li>{{ team }}</li>
+        {% endfor %}
+    </ul>
+
+    <p id="waiting-message"></p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port + '/waiting_room');
+    
+        socket.on('update_waiting_room', function(data) {
+            // Update the team list on all connected clients
+            var teamList = document.getElementById('team-list');
+            teamList.innerHTML = "";
+            data.teams.forEach(function(team) {
+                var listItem = document.createElement('li');
+                listItem.textContent = team;
+                teamList.appendChild(listItem);
+            });
+        });
+
+        // Listen for the message about the remaining teams needed for redirection
+        socket.on('waiting_for_teams', function(data) {
+            var waitingMessage = document.getElementById('waiting-message');
+            waitingMessage.textContent = 'Waiting for ' + data.remaining_teams + ' more team(s) to join.';
+        });
+    
+        // Listen for the event indicating all teams are ready
+        socket.on('all_teams_ready', function() {
+            // Redirect to the Congratulations page
+            window.location.href = "/congratulations";
+        });
+
+        // Listen for the event indicating to start the questions
+        socket.on('start_questions', function() {
+            // Redirect to the first question page
+            window.location.href = "/questions/team1";
+        });
+    </script>    
+</body>
+</html>
