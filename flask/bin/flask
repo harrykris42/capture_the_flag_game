@@ -1,4 +1,4 @@
-#!/home/harry/flask/bin/python
+#!/home/harry/final_ctf/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

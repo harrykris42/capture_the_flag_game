@@ -32,7 +32,7 @@ export-env {
       }
     }
 
-    let virtual_env = '/home/harry/flask'
+    let virtual_env = '/home/harry/final_ctf'
     let bin = 'bin'
 
     let is_windows = ($nu.os-info.family) == 'windows'
