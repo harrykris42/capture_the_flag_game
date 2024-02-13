@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting Room</title>
+</head>
+<body>
+    <h1>Waiting Room</h1>
+    <ul id="ansdid">
+        {% for x in ansd %}
+        <li>{{x}}</li>
+        {% endfor %}
+    </ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+    
+        socket.on('uansd', function(data) {
+            var ansdList = document.getElementById('ansdid');
+            ansdList.innerHTML = '';
+            for (var tn in data.ansd) {
+                var listItem = document.createElement('li');
+                listItem.textContent = tn + ': ' + data.ansd[tn];
+                ansdList.appendChild(listItem);
+            }
+            if (Object.keys(data.ansd).length == 3) {
+                window.location.reload(true);
+            }
+        });
+
+    </script>
+    
+</body>
+</html>

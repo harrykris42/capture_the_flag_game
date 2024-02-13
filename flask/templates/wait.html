@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting Room</title>
+</head>
+<body>
+    <h1>Waiting Room</h1>
+    <ul id="tnlid">
+        {% for x in tnl %}
+        <li>{{x}}</li>
+        {% endfor %}
+    </ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+    
+        socket.on('utnl', function(data) {
+            var tnl = document.getElementById('tnlid');
+            tnl.innerHTML = '';
+            data.tnlid.forEach(function(team) {
+                var listItem = document.createElement('li');
+                listItem.textContent = team;
+                tnl.appendChild(listItem);
+            });
+            if (data.tnlid.length == 3) {
+                // Refresh the page for all teams only if at least 3 teams have joined
+                window.location.reload(true);
+            }
+        });
+    </script>    
+</body>
+</html>
