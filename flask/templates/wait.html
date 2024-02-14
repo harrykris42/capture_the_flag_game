@@ -17,7 +17,7 @@
     <script type="text/javascript">
         var socket = io.connect('http://' + document.domain + ':' + location.port);
     
-        socket.on('utnl', function(data) {
+        socket.on('stnl', function(data) {
             var tnl = document.getElementById('tnlid');
             tnl.innerHTML = '';
             data.tnlid.forEach(function(team) {
@@ -25,7 +25,7 @@
                 listItem.textContent = team;
                 tnl.appendChild(listItem);
             });
-            if (data.tnlid.length == 3) {
+            if (data.tnlid.length == 2) {
                 // Refresh the page for all teams only if at least 3 teams have joined
                 window.location.reload(true);
             }

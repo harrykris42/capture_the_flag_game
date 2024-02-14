@@ -7,8 +7,8 @@
 </head>
 <body>
     <h1>Waiting Room</h1>
-    <ul id="ansd1id">
-        {% for x in ansd1 %}
+    <ul id="ansd3id">
+        {% for x in ansd3 %}
         <li>{{x}}</li>
         {% endfor %}
     </ul>
@@ -17,15 +17,15 @@
     <script type="text/javascript">
         var socket = io.connect('http://' + document.domain + ':' + location.port);
     
-        socket.on('sansd1', function(data) {
-            var ansd1 = document.getElementById('ansd1id');
-            ansd1.innerHTML = '';
-            for (var tn in data.ansd1id) {
+        socket.on('sansd3', function(data) {
+            var ansd3 = document.getElementById('ansd3id');
+            ansd3.innerHTML = '';
+            for (var tn in data.ansd3id) {
                 var listItem = document.createElement('li');
-                listItem.textContent = tn + ': ' + data.ansd1id[tn];
-                ansd1.appendChild(listItem);
+                listItem.textContent = tn + ': ' + data.ansd3id[tn];
+                ansd3.appendChild(listItem);
             }
-            if (Object.keys(data.ansd1id).length == 2) {
+            if (Object.keys(data.ansd3id).length == 2) {
                 window.location.reload(true);
             }
         });

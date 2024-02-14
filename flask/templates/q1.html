@@ -6,11 +6,25 @@
         <title>Q1</title>
         <body>
             <h1>QUESTION 1</h1>
-            <form method="post" action="{{url_for('q1', tn=tn)}}">
-                <label for="ans">What color is the sky?</label>
-                <input type="text" id="ans" name="ans" required>
+            <a href="/static/image.png" download="image.png">Download Image</a>
+            <form id="q1Form" method="post" action="{{url_for('q1', tn=tn)}}">
+                <label for="ans1">What country does the place shown in image belong to?</label>
+                <input type="text" id="ans1" name="ans1" required>
                 <input type="submit" value="Submit">
             </form>
+            <div id="timer">30</div>
+            <script>
+                var timeleft = 30;
+                var downloadTimer = setInterval(function(){
+                    document.getElementById("timer").innerHTML = timeleft;
+                    timeleft -= 1;
+                    if(timeleft <= 0){
+                        clearInterval(downloadTimer);
+                        document.getElementById("ans1").value = "NA"; // Set answer to "NA"
+                        document.getElementById("submitBtn").click(); // Automatically submit the form
+                    }
+                }, 1000);
+            </script>
         </body>
     </head>
 </html>

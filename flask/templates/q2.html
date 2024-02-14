@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Q2</title>
+    </head>
+    <body>
+        {% for key,value in sb.items() %}
+        {% if key==tn %}
+        {% if value==1 %}
+        <li>passed</li>
+        {% else %}
+        <li>failed</li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        <h1>Q2</h1>
+        <h3>
+            Code whispers softly, a language obscure with 6 letters,
+            Rapidly, the solution emerged from the depths of the digital puzzle.
+            Yet to decipher, one must endure.
+            Puzzles encrypted, solutions unsure,
+            Through the labyrinth of data, one must secure,
+            Obscured by algorithms, complex and pure.
+            Solve this riddle to find the key and hence decrypt this message :
+            ccyc mitzlv
+        </h3>
+        <form id="q2Form" method="post" action="{{url_for('q2', tn=tn)}}">
+            <label for="ans2">solution?</label>
+            <input type="text" id="ans2" name="ans2" required>
+            <input type="submit" value="Submit">
+        </form>
+        <div id="timer">30</div>
+        <script>
+            var timeleft = 30;
+            var downloadTimer = setInterval(function(){
+                document.getElementById("timer").innerHTML = timeleft;
+                timeleft -= 1;
+                if(timeleft <= 0){
+                    clearInterval(downloadTimer);
+                    document.getElementById("ans2").value = "NA"; // Set answer to "NA"
+                    document.getElementById("submitBtn").click(); // Automatically submit the form
+                }
+            }, 1000);
+        </script>
+    </body>
+</html>
