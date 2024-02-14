@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Login</title>
 </head>
+
 <body>
-    <form method="post" action="{{url_for('login')}}">
-        <label for="tn">Team name:</label>
-        <input type="text" id="tn" name="tn" required>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="body-container">
+        <div class="title" id="typewriter">
+            BILTZKREIG
+        </div>
+        <h1 style="padding-left: 38%; font-size: 45px; color: #462728;">Capture The Flag</h1>
+        <div class="lower-part">
+            <div class="login-box">
+                <h1>Enter Team Name</h1>
+                <form action="{{ url_for('login') }}" method="post" onsubmit="return validateForm()">
+                    <label for="tn">Team Name:</label>
+                    <input type="text" id="tn" name="tn" required>
+                    <button type="submit">Enter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
+
 </html>
