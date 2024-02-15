@@ -26,7 +26,7 @@ def login():
 
 @app.route('/<tn>/wait')
 def wait(tn):
-    if len(tnl) == 2:
+    if len(tnl) == 5:
         return redirect(url_for('q1', tn=tn))
     return render_template('wait.html', tnl=tnl)
 
@@ -41,7 +41,7 @@ def q1(tn):
 
 @app.route('/<tn>/wait_q1')
 def wait_q1(tn):
-    if len(ansd1) == 2:
+    if len(ansd1) == 5:
         for key, value in ansd1.items():
             if value == "blitzkriegctf{germany}":
                 sb[key]=sb.get(key,0)+2.5
@@ -61,9 +61,9 @@ def q2(tn):
 
 @app.route('/<tn>/wait_q2')
 def wait_q2(tn):
-    if len(ansd2) == 2:
+    if len(ansd2) == 5:
         for key, value in ansd2.items():
-            if value == 'blitzkriegctf{secret}':
+            if value == 'blitzkriegctf{alan turing}':
                 sb[key]=sb.get(key,0)+5
             else:
                 sb[key]=sb.get(key,0)+0.0
@@ -81,7 +81,7 @@ def q3(tn):
 
 @app.route('/<tn>/wait_q3')
 def wait_q3(tn):
-    if len(ansd3) == 2:
+    if len(ansd3) == 5:
         for key, value in ansd3.items():
             if value == 'blitzkriegctf{youfoundm3}':
                 sb[key]=sb.get(key,0)+5
@@ -101,7 +101,7 @@ def q4(tn):
 
 @app.route('/<tn>/wait_q4')
 def wait_q4(tn):
-    if len(ansd4) == 2:
+    if len(ansd4) == 5:
         for key, value in ansd4.items():
             if value == 'blitzkriegctf{33}':
                 sb[key]=sb.get(key,0)+12.5
@@ -121,7 +121,7 @@ def q5(tn):
 
 @app.route('/<tn>/wait_q5')
 def wait_q5(tn):
-    if len(ansd5) == 2:
+    if len(ansd5) == 5:
         for key, value in ansd5.items():
             if value == 'blitzkriegctf{01}':
                 sb[key]=sb.get(key,0)+12.5
@@ -141,7 +141,7 @@ def q6(tn):
 
 @app.route('/<tn>/wait_q6')
 def wait_q6(tn):
-    if len(ansd6) == 2:
+    if len(ansd6) == 5:
         for key, value in ansd6.items():
             if value == 'blitzkriegctf{marcus wanner}':
                 sb[key]=sb.get(key,0)+12.5
@@ -161,7 +161,7 @@ def q7(tn):
 
 @app.route('/<tn>/wait_q7')
 def wait_q7(tn):
-    if len(ansd7) == 2:
+    if len(ansd7) == 5:
         for key, value in ansd7.items():
             if value == 'blitzkriegctf{cicada 3301}':
                 sb[key]=sb.get(key,0)+12.5
