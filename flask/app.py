@@ -9,6 +9,10 @@ tnl = []
 ansd1 = {}
 ansd2 = {}
 ansd3 = {}
+ansd4={}
+ansd5={}
+ansd6={}
+ansd7={}
 sb={}
 
 @app.route('/', methods=['GET', 'POST'])
@@ -39,8 +43,8 @@ def q1(tn):
 def wait_q1(tn):
     if len(ansd1) == 2:
         for key, value in ansd1.items():
-            if value == 'germany':
-                sb[key]=sb.get(key,0)+0.5
+            if value == "blitzkriegctf{germany}":
+                sb[key]=sb.get(key,0)+2.5
             else:
                 sb[key]=sb.get(key,0)+0.0
         return redirect(url_for('q2', tn=tn))
@@ -59,8 +63,8 @@ def q2(tn):
 def wait_q2(tn):
     if len(ansd2) == 2:
         for key, value in ansd2.items():
-            if value == 'secret':
-                sb[key]=sb.get(key,0)+0.5
+            if value == 'blitzkriegctf{secret}':
+                sb[key]=sb.get(key,0)+5
             else:
                 sb[key]=sb.get(key,0)+0.0
         return redirect(url_for('q3', tn=tn))
@@ -79,8 +83,8 @@ def q3(tn):
 def wait_q3(tn):
     if len(ansd3) == 2:
         for key, value in ansd3.items():
-            if value == 'youfoundm3':
-                sb[key]=sb.get(key,0)+0.5
+            if value == 'blitzkriegctf{youfoundm3}':
+                sb[key]=sb.get(key,0)+5
             else:
                 sb[key]=sb.get(key,0)+0.0
         return redirect(url_for('q4', tn=tn))
@@ -88,8 +92,87 @@ def wait_q3(tn):
 
 @app.route('/<tn>/q4', methods=['GET', 'POST'])
 def q4(tn):
+    if request.method == 'POST':
+        ans4 = request.form.get('ans4')
+        ansd4[tn]=ans4.lower()
+        socketio.emit('sansd4', {'ansd4id': ansd4})
+        return redirect(url_for('wait_q4', tn=tn))
     return render_template('q4.html', sb=sb, tn=tn)
 
+@app.route('/<tn>/wait_q4')
+def wait_q4(tn):
+    if len(ansd4) == 2:
+        for key, value in ansd4.items():
+            if value == 'blitzkriegctf{33}':
+                sb[key]=sb.get(key,0)+12.5
+            else:
+                sb[key]=sb.get(key,0)+0.0
+        return redirect(url_for('q5', tn=tn))
+    return render_template('wait_q4.html', ansd4=ansd4)
+
+@app.route('/<tn>/q5', methods=['GET', 'POST'])
+def q5(tn):
+    if request.method == 'POST':
+        ans5 = request.form.get('ans5')
+        ansd5[tn]=ans5.lower()
+        socketio.emit('sansd5', {'ansd5id': ansd5})
+        return redirect(url_for('wait_q5', tn=tn))
+    return render_template('q5.html', sb=sb, tn=tn)
+
+@app.route('/<tn>/wait_q5')
+def wait_q5(tn):
+    if len(ansd5) == 2:
+        for key, value in ansd5.items():
+            if value == 'blitzkriegctf{01}':
+                sb[key]=sb.get(key,0)+12.5
+            else:
+                sb[key]=sb.get(key,0)+0.0
+        return redirect(url_for('q6', tn=tn))
+    return render_template('wait_q5.html', ansd5=ansd5)
+
+@app.route('/<tn>/q6', methods=['GET', 'POST'])
+def q6(tn):
+    if request.method == 'POST':
+        ans6 = request.form.get('ans6')
+        ansd6[tn]=ans6.lower()
+        socketio.emit('sansd6', {'ansd6id': ansd6})
+        return redirect(url_for('wait_q6', tn=tn))
+    return render_template('q6.html', sb=sb, tn=tn)
+
+@app.route('/<tn>/wait_q6')
+def wait_q6(tn):
+    if len(ansd6) == 2:
+        for key, value in ansd6.items():
+            if value == 'blitzkriegctf{marcus wanner}':
+                sb[key]=sb.get(key,0)+12.5
+            else:
+                sb[key]=sb.get(key,0)+0.0
+        return redirect(url_for('q7', tn=tn))
+    return render_template('wait_q6.html', ansd6=ansd6)
+
+@app.route('/<tn>/7', methods=['GET', 'POST'])
+def q7(tn):
+    if request.method == 'POST':
+        ans7 = request.form.get('ans7')
+        ansd7[tn]=ans7.lower()
+        socketio.emit('sansd7', {'ansd7id': ansd7})
+        return redirect(url_for('wait_q7', tn=tn))
+    return render_template('q7.html', sb=sb, tn=tn)
+
+@app.route('/<tn>/wait_q7')
+def wait_q7(tn):
+    if len(ansd7) == 2:
+        for key, value in ansd7.items():
+            if value == 'blitzkriegctf{cicada 3301}':
+                sb[key]=sb.get(key,0)+12.5
+            else:
+                sb[key]=sb.get(key,0)+0.0
+        return redirect(url_for('q8', tn=tn))
+    return render_template('wait_q7.html', ansd7=ansd7)
+
+@app.route('/<tn>/8', methods=['GET', 'POST'])
+def q8(tn):
+    return render_template('q8.html', sb=sb, tn=tn)
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app, host='172.16.36.42' ,port=5000 ,debug=True)

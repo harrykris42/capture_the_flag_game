@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Q4</title>
+    </head>
+    <body>
+        <h1>Considering the round 2 answers as hints
+            Find a realtion between them and name a famous even:
+        </h1>
+        <h3>Input the answer is this format:
+            BlitzKriegCTF{your_answer}
+        </h3>
+        <form id="q7Form" method="post" action="{{url_for('q7', tn=tn)}}">
+            <label for="ans7">Whats my name?</label>
+            <input type="text" id="ans7" name="ans7" required>
+            <input type="submit" value="Submit">
+        </form>
+        <script>
+            var timeleft = 900;
+            var downloadTimer = setInterval(function(){
+                document.getElementById("timer").innerHTML = timeleft;
+                timeleft -= 1;
+                if(timeleft <= 0){
+                    clearInterval(downloadTimer);
+                    document.getElementById("ans7").value = "NA"; // Set answer to "NA"
+                    document.getElementById("submitBtn").click(); // Automatically submit the form
+                }
+            }, 1000);
+        </script>
+    </body>
+</html>

@@ -1,30 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Q1</title>
-        <body>
-            <h1>QUESTION 1</h1>
-            <a href="/static/image.png" download="image.png">Download Image</a>
-            <form id="q1Form" method="post" action="{{url_for('q1', tn=tn)}}">
-                <label for="ans1">What country does the place shown in image belong to?</label>
-                <input type="text" id="ans1" name="ans1" required>
-                <input type="submit" value="Submit">
-            </form>
-            <div id="timer">30</div>
-            <script>
-                var timeleft = 30;
-                var downloadTimer = setInterval(function(){
-                    document.getElementById("timer").innerHTML = timeleft;
-                    timeleft -= 1;
-                    if(timeleft <= 0){
-                        clearInterval(downloadTimer);
-                        document.getElementById("ans1").value = "NA"; // Set answer to "NA"
-                        document.getElementById("submitBtn").click(); // Automatically submit the form
-                    }
-                }, 1000);
-            </script>
-        </body>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #timer {
+            font-size: 24px;
+            color: #007bff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QUESTION 1</h1>
+        <h3>Input the answer is this format:
+            BlitzKriegCTF{your_answer}
+        </h3>
+        <a href="/static/image.png" download="image.png" style="text-decoration: none; color: #007bff;">Download Image</a>
+        <form id="q1Form" method="post" action="{{url_for('q1', tn=tn)}}">
+            <label for="ans1">What country does the place shown in the image belong to?</label>
+            <input type="text" id="ans1" name="ans1" required>
+            <input type="submit" value="Submit">
+        </form>
+        <div id="timer">600</div>
+        <script>
+            var timeleft = 600;
+            var downloadTimer = setInterval(function(){
+                document.getElementById("timer").innerHTML = timeleft;
+                timeleft -= 1;
+                if(timeleft <= 0){
+                    clearInterval(downloadTimer);
+                    document.getElementById("ans1").value = "NA"; // Set answer to "NA"
+                    document.getElementById("q1Form").submit(); // Automatically submit the form
+                }
+            }, 1000);
+        </script>
+    </div>
+</body>
 </html>

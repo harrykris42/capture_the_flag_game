@@ -6,28 +6,17 @@
         <title>Q3</title>
     </head>
     <body>
-        {% for key,value in sb.items() %}
-        {% if key==tn %}
-        {% if value==25 %}
-        <h3>PREVIOUS QUESTION WAS ANSWERED CORRECTLY</h3>
-        {% else %}
-        <h3>PREVIOUS QUESTION WAS ANSWERED INCORRECTLY</h3>
-        {% endif %}
-        {% endif %}
-        {% endfor %}
-        <h1>ROUND 2 COMMENCING</h1>
-        <h1>Q1</h1>
+        <h2>Find me if you dare:
+            Cryptor0007
+        </h2>
         <h3>Input the answer is this format:
             BlitzKriegCTF{your_answer}
         </h3>
-        <h3>Enter the message hidden in the broken image</h3>
-        <a href="/static/broken_image.png" download="broken_image.png">Download image</a>
-        <form id="q4Form" method="post" action="{{url_for('q4', tn=tn)}}">
-            <label for="ans4">solution?</label>
-            <input type="text" id="ans4" name="ans4" required>
+        <form id="q6Form" method="post" action="{{url_for('q6', tn=tn)}}">
+            <label for="ans6">Whats my name?</label>
+            <input type="text" id="ans6" name="ans6" required>
             <input type="submit" value="Submit">
         </form>
-        <div id="timer">900</div>
         <script>
             var timeleft = 900;
             var downloadTimer = setInterval(function(){
@@ -35,7 +24,7 @@
                 timeleft -= 1;
                 if(timeleft <= 0){
                     clearInterval(downloadTimer);
-                    document.getElementById("ans3").value = "NA"; // Set answer to "NA"
+                    document.getElementById("ans6").value = "NA"; // Set answer to "NA"
                     document.getElementById("submitBtn").click(); // Automatically submit the form
                 }
             }, 1000);

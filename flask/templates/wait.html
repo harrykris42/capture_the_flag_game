@@ -4,14 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waiting Room</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            width: 300px;
+        }
+        li {
+            background-color: #fff;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .rules-container {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            text-align: left;
+        }
+        .rules-container h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .rules-container p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
     <h1>Waiting Room</h1>
+    <h1>ROUND 1 COMMENCING...</h1>
+    <h3>Teams joined:</h3>
     <ul id="tnlid">
         {% for x in tnl %}
         <li>{{x}}</li>
         {% endfor %}
     </ul>
+
+    <div class="rules-container">
+        <h2>CTF Rules</h2>
+        <p>Welcome to the Capture The Flag (CTF) game! Here are the rules:</p>
+        <ul>
+            <li>No use of artificial intelligence (AI) or automated tools to solve challenges.</li>
+            <li>No use of digital gadgets except for the provided PC or laptop.</li>
+            <li>All participants must adhere to ethical hacking principles and respect others' privacy and security.</li>
+            <li>Participants must not attempt to disrupt the game, tamper with the infrastructure, or engage in any malicious activities.</li>
+            <li>Collaboration among team members is encouraged, but sharing answers or hints with other teams is strictly prohibited.</li>
+            <li>All challenges must be solved within the specified time frame. Late submissions will not be considered.</li>
+            <li>The decision of the organizers is final in case of any disputes or rule violations.</li>
+        </ul>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
     <script type="text/javascript">

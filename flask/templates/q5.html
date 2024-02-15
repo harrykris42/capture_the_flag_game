@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Q3</title>
+    </head>
+    <body>
+        {% for key,value in sb.items() %}
+        {% if key==tn %}
+        {% if value==25 %}
+        <h3>PREVIOUS QUESTION WAS ANSWERED CORRECTLY</h3>
+        {% else %}
+        <h3>PREVIOUS QUESTION WAS ANSWERED INCORRECTLY</h3>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        <h1>Q2</h1>
+        <h2>Decipher this image and enter the flag</h2>
+    <h3>Input the answer is this format:
+        BlitzKriegCTF{your_answer}
+    </h3>
+    <img src="/static/q5.jpg" usemap="#work" height="720" width="1500">
+    <map name="work">
+        <area shape="rect" coords="148,84,292,129" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="303,92,453,128" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="463,96,596,130" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="614,97,757,140" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="770,92,927,130" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="955,76,1115,123" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="1130,70,1303,116" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="1326,62,1496,99" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="1324,122,1498,160" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="1323,121,1495,162" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="1135,135,1303,172" href="/static/blitz.png" download="blitz.png" alt="">
+        <area shape="rect" coords="953,141,1115,182" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="768,148,924,170" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="467,144,550,174" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="302,134,456,172" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="149,136,293,172" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="1323,176,1496,230" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="1133,188,1302,228" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="954,194,1117,237" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="302,186,452,234" href="/static/q5_f.pdf" download="find.pdf" alt="">
+        <area shape="rect" coords="149,184,294,230" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="148,241,293,282" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="302,236,457,283" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="752,249,923,305" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="950,256,1117,300" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="1132,252,1309,304" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="1324,254,1497,300" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="1324,313,1497,353" href="javascript:void(0)" alt="">
+        <area shape="rect" coords="1324,368,1497,431" href="javascript:void(0)" alt="">
+    </map>
+        <form id="q5Form" method="post" action="{{url_for('q5', tn=tn)}}">
+            <label for="ans5">solution?</label>
+            <input type="text" id="ans5" name="ans5" required>
+            <input type="submit" value="Submit">
+        </form>
+        <div id="timer">900</div>
+        <script>
+            var timeleft = 900;
+            var downloadTimer = setInterval(function(){
+                document.getElementById("timer").innerHTML = timeleft;
+                timeleft -= 1;
+                if(timeleft <= 0){
+                    clearInterval(downloadTimer);
+                    document.getElementById("ans5").value = "NA"; // Set answer to "NA"
+                    document.getElementById("submitBtn").click(); // Automatically submit the form
+                }
+            }, 1000);
+        </script>
+    </body>
+</html>

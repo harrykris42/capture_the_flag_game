@@ -38,9 +38,9 @@
 </head>
 <body>
     <h1>Waiting Room</h1>
-    <h3>Teams answered:</h3>
-    <ul id="ansd2id">
-        {% for x in ansd2 %}
+    <h3>Teams answered:</H3>
+    <ul id="ansd6id">
+        {% for x in ansd6 %}
         <li>{{x}}</li>
         {% endfor %}
     </ul>
@@ -49,20 +49,18 @@
     <script type="text/javascript">
         var socket = io.connect('http://' + document.domain + ':' + location.port);
     
-        socket.on('sansd2', function(data) {
-            var ansd2 = document.getElementById('ansd2id');
-            ansd2.innerHTML = '';
-            for (var tn in data.ansd2id) {
+        socket.on('sansd6', function(data) {
+            var ansd6 = document.getElementById('ansd6id');
+            ansd6.innerHTML = '';
+            for (var tn in data.ansd6id) {
                 var listItem = document.createElement('li');
-                listItem.textContent = tn + ': ' + data.ansd2id[tn];
-                ansd2.appendChild(listItem);
+                listItem.textContent = tn + ': ' + data.ansd6id[tn];
+                ansd6.appendChild(listItem);
             }
-            if (Object.keys(data.ansd2id).length == 2) {
+            if (Object.keys(data.ansd6id).length == 2) {
                 window.location.reload(true);
             }
         });
-
     </script>
-    
 </body>
 </html>

@@ -1,40 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Q3</title>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        a {
+            display: block;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #timer {
+            font-size: 24px;
+            color: #007bff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
         {% for key,value in sb.items() %}
         {% if key==tn %}
-        {% if value==2 %}
-        <li>passed</li>
+        {% if value==15 %}
+        <h3 style="color: green;">PREVIOUS QUESTION WAS ANSWERED CORRECTLY</h3>
         {% else %}
-        <li>failed</li>
+        <h3 style="color: red;">PREVIOUS QUESTION WAS ANSWERED INCORRECTLY</h3>
         {% endif %}
         {% endif %}
         {% endfor %}
         <h1>Q3</h1>
         <h3>Decipher this audio</h3>
         <a href="/static/audio.wav" download="audio.wav">Download Audio</a>
+        <h3>Input the answer is this format:
+            BlitzKriegCTF{your_answer}
+        </h3>
         <form id="q3Form" method="post" action="{{url_for('q3', tn=tn)}}">
-            <label for="ans3">solution?</label>
+            <label for="ans3">Solution?</label>
             <input type="text" id="ans3" name="ans3" required>
             <input type="submit" value="Submit">
         </form>
-        <div id="timer">30</div>
+        <div id="timer">600</div>
         <script>
-            var timeleft = 30;
+            var timeleft = 600;
             var downloadTimer = setInterval(function(){
                 document.getElementById("timer").innerHTML = timeleft;
                 timeleft -= 1;
                 if(timeleft <= 0){
                     clearInterval(downloadTimer);
                     document.getElementById("ans3").value = "NA"; // Set answer to "NA"
-                    document.getElementById("submitBtn").click(); // Automatically submit the form
+                    document.getElementById("q3Form").submit(); // Automatically submit the form
                 }
             }, 1000);
         </script>
-    </body>
+    </div>
+</body>
 </html>
