@@ -8,10 +8,10 @@
     <body>
         {% for key,value in sb.items() %}
         {% if key==tn %}
-        {% if value==25 %}
-        <h3>PREVIOUS QUESTION WAS ANSWERED CORRECTLY</h3>
+        {% if value==50 %}
+        <h3 style="color: green;">PREVIOUS QUESTION WAS ANSWERED CORRECTLY</h3>
         {% else %}
-        <h3>PREVIOUS QUESTION WAS ANSWERED INCORRECTLY</h3>
+        <h3 style="color: red;">PREVIOUS QUESTION WAS ANSWERED INCORRECTLY</h3>
         {% endif %}
         {% endif %}
         {% endfor %}

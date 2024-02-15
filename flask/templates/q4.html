@@ -1,44 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Q3</title>
-    </head>
-    <body>
-        {% for key,value in sb.items() %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+
+        h1, h3 {
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #timer {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    {% for key,value in sb.items() %}
         {% if key==tn %}
-        {% if value==25 %}
-        <h3>PREVIOUS QUESTION WAS ANSWERED CORRECTLY</h3>
-        {% else %}
-        <h3>PREVIOUS QUESTION WAS ANSWERED INCORRECTLY</h3>
+            {% if value==25 %}
+                <h3 class="success">PREVIOUS QUESTION WAS ANSWERED CORRECTLY</h3>
+            {% else %}
+                <h3 class="error">PREVIOUS QUESTION WAS ANSWERED INCORRECTLY</h3>
+            {% endif %}
         {% endif %}
-        {% endif %}
-        {% endfor %}
-        <h1>ROUND 2 COMMENCING</h1>
-        <h1>Q1</h1>
-        <h3>Input the answer is this format:
-            BlitzKriegCTF{your_answer}
-        </h3>
-        <h3>Enter the message hidden in the broken image</h3>
-        <a href="/static/broken_image.png" download="broken_image.png">Download image</a>
-        <form id="q4Form" method="post" action="{{url_for('q4', tn=tn)}}">
-            <label for="ans4">solution?</label>
-            <input type="text" id="ans4" name="ans4" required>
-            <input type="submit" value="Submit">
-        </form>
-        <div id="timer">900</div>
-        <script>
-            var timeleft = 900;
-            var downloadTimer = setInterval(function(){
-                document.getElementById("timer").innerHTML = timeleft;
-                timeleft -= 1;
-                if(timeleft <= 0){
-                    clearInterval(downloadTimer);
-                    document.getElementById("ans3").value = "NA"; // Set answer to "NA"
-                    document.getElementById("submitBtn").click(); // Automatically submit the form
-                }
-            }, 1000);
-        </script>
-    </body>
+    {% endfor %}
+    <h1>ROUND 2 COMMENCING</h1>
+    <h1>Q1</h1>
+    <h3>Input the answer is this format:
+        <br>BlitzKriegCTF{your_answer}</h3>
+    <h3>Enter the message hidden in the broken image</h3>
+    <a href="/static/broken_image.png" download="broken_image.png">Download image</a>
+    <form id="q4Form" method="post" action="{{url_for('q4', tn=tn)}}">
+        <label for="ans4">solution?</label>
+        <input type="text" id="ans4" name="ans4" required>
+        <input type="submit" value="Submit">
+    </form>
+    <div id="timer">900</div>
+    <script>
+        var timeleft = 900;
+        var downloadTimer = setInterval(function(){
+            document.getElementById("timer").innerHTML = timeleft;
+            timeleft -= 1;
+            if(timeleft <= 0){
+                clearInterval(downloadTimer);
+                document.getElementById("ans3").value = "NA"; // Set answer to "NA"
+                document.getElementById("submitBtn").click(); // Automatically submit the form
+            }
+        }, 1000);
+    </script>
+</body>
 </html>

@@ -6,6 +6,15 @@
         <title>Q3</title>
     </head>
     <body>
+        {% for key,value in sb.items() %}
+        {% if key==tn %}
+        {% if value==75 %}
+        <h3 style="color: green;">PREVIOUS QUESTION WAS ANSWERED CORRECTLY</h3>
+        {% else %}
+        <h3 style="color: red;">PREVIOUS QUESTION WAS ANSWERED INCORRECTLY</h3>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
         <h2>Find me if you dare:
             Cryptor0007
         </h2>

@@ -6,6 +6,15 @@
         <title>Q4</title>
     </head>
     <body>
+        {% for key,value in sb.items() %}
+        {% if key==tn %}
+        {% if value==100 %}
+        <h3 style="color: green;">PREVIOUS QUESTION WAS ANSWERED CORRECTLY</h3>
+        {% else %}
+        <h3 style="color: red;">PREVIOUS QUESTION WAS ANSWERED INCORRECTLY</h3>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
         <h1>Considering the round 2 answers as hints
             Find a realtion between them and name a famous even:
         </h1>
